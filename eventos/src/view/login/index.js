@@ -6,15 +6,16 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [msgType, setMsgType] = useState("");
 
   const login = () => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((_userCredential) => {
-        alert("User logged in successfully!");
+        setMsgType("success");
       })
-      .catch((error) => {
-        alert(error);
+      .catch((_error) => {
+        setMsgType("error");
       });
   };
 
@@ -59,9 +60,8 @@ function Login() {
         </button>
 
         <div className="msg-login text-white text-center my-4">
-          <span>Tudo certo! Você está conectado! &#128526;</span>
-          <br />
-          <span>Algo deu errado! Verifique o usuário ou a senha!</span>
+          {msgType === "success" && <span>Tudo certo! Você está conectado! &#128526;</span>}
+          {msgType === "error" && <span>Algo deu errado! Verifique o usuário ou a senha!</span>}
         </div>
 
         <div className="login-options mt-4">
