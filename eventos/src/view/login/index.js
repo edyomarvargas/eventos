@@ -1,6 +1,23 @@
+import { useState } from "react";
 import "./login.css";
+import "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = () => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((_userCredential) => {
+        alert("User logged in successfully!");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
   return (
     <div className="login-container d-flex align-items-center">
       <form className="mx-auto">
@@ -10,6 +27,9 @@ function Login() {
 
         <div className="form-floating">
           <input
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
             type="email"
             className="form-control my-2"
             id="floatingInput"
@@ -19,6 +39,9 @@ function Login() {
         </div>
         <div className="form-floating">
           <input
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
             type="password"
             className="form-control my-2"
             id="floatingPassword"
@@ -27,7 +50,11 @@ function Login() {
           <label for="floatingPassword">Password</label>
         </div>
 
-        <button className="w-100 btn btn-lg btn-login" type="submit">
+        <button
+          className="w-100 btn btn-lg btn-login"
+          type="button"
+          onClick={login}
+        >
           Sign in
         </button>
 
