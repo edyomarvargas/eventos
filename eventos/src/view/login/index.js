@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./login.css";
 import "firebase/auth";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -65,13 +66,13 @@ function Login() {
         </div>
 
         <div className="login-options mt-4">
-          <a href="#" className="mx-2">
+          <Link to="" className="mx-2">
             Recuperar senha
-          </a>
+          </Link>
           <span className="text-white">&#9733;</span>
-          <a href="#" className="mx-2">
+          <Link to="/register" className="mx-2">
             Quero cadastrar
-          </a>
+          </Link>
         </div>
       </form>
     </div>
