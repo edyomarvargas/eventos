@@ -1,0 +1,14 @@
+.register-form {
+  margin: 0 auto;
+  max-width: 650px;
+}
+
+.btn-register {
+  background-color: #614EA6;
+  color: #FFF;
+}
+
+.btn-register:hover {
+  background-color: #F21667;
+  color: #FFF;
+}
