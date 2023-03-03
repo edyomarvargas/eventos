@@ -1,6 +1,13 @@
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Login from './view/login';
+import Register from './view/register';
+
 function App() {
   return (
-    <h1>Initial setup</h1>
+    <Router>
+      <Route exact path="/" component={Login} />
+      <Route exact path="/register" component={Register} />
+    </Router>
   );
 }
 
