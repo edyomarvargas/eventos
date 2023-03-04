@@ -2,18 +2,24 @@ import { useState } from "react";
 import "./login.css";
 import "firebase/auth";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msgType, setMsgType] = useState("");
 
+  const dispatch = useDispatch()
+
   const login = () => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((_userCredential) => {
         setMsgType("success");
+        setTimeout(() => {
+          dispatch({type: 'LOGIN', userEmail: email})
+        }, 1000);
       })
       .catch((_error) => {
         setMsgType("error");
@@ -22,6 +28,9 @@ function Login() {
 
   return (
     <div className="login-container d-flex align-items-center">
+
+      {useSelector(state => state.isLogged) && <Redirect to="/" />}
+
       <form className="mx-auto">
         <h1 className="h3 mb-3 fw-normal text-white font-weight-bold text-center">
           Login
