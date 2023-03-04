@@ -3,6 +3,7 @@ import "./register.css";
 import "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase";
+import Navbar from "../components/navbar";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -48,49 +49,52 @@ function Register() {
   }
 
   return (
-    <div className="register-form">
-      <form className="text-center form-login mx-auto mt-5">
-        <h1 className="h3 mb-3 text-black font-weight-bold">Cadastro</h1>
+    <>
+      <Navbar />
+      <div className="register-form">
+        <form className="text-center form-login mx-auto mt-5">
+          <h1 className="h3 mb-3 text-black font-weight-bold">Cadastro</h1>
 
-        <input
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          type="email"
-          className="form-control my-2"
-          placeholder="E-mail"
-        />
-        <input
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          type="password"
-          className="form-control my-2"
-          placeholder="Password"
-        />
+          <input
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            type="email"
+            className="form-control my-2"
+            placeholder="E-mail"
+          />
+          <input
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            type="password"
+            className="form-control my-2"
+            placeholder="Password"
+          />
 
-        {isLoading ? (
-          <div class="spinner-border text-danger" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        ) : (
-          <button
-            type="button"
-            className="btn btn-lg btn-block mt-3 mb-5 btn-register"
-            onClick={register}
-          >
-            Register
-          </button>
-        )}
-
-        <div className="msg-login text-black text-center my-4">
-          {msgType === "success" && (
-            <span>Usuário cadastrado com sucesso! &#128526;</span>
+          {isLoading ? (
+            <div class="spinner-border text-danger" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          ) : (
+            <button
+              type="button"
+              className="btn btn-lg btn-block mt-3 mb-5 btn-register"
+              onClick={register}
+            >
+              Register
+            </button>
           )}
-          {msgType === "error" && <span>Algo deu errado! {msg}</span>}
-        </div>
-      </form>
-    </div>
+
+          <div className="msg-login text-black text-center my-4">
+            {msgType === "success" && (
+              <span>Usuário cadastrado com sucesso! &#128526;</span>
+            )}
+            {msgType === "error" && <span>Algo deu errado! {msg}</span>}
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 
