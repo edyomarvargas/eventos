@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
-        <span className="navbar-brand text-white font-weight-bold">
+        <span className="navbar-brand text-white fw-bold">
           Eventos
         </span>
         <button
@@ -32,7 +32,7 @@ function Navbar() {
             {useSelector((state) => state.isLogged) ? (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" aria-current="page" to="">
+                  <Link className="nav-link" aria-current="page" to="/create-event">
                     Publicar evento
                   </Link>
                 </li>
