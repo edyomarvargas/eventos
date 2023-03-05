@@ -53,7 +53,7 @@ function Register() {
       <Navbar />
       <div className="register-form">
         <form className="text-center form-login mx-auto mt-5">
-          <h1 className="h3 mb-3 text-black font-weight-bold">Cadastro</h1>
+          <h1 className="h3 mb-3 text-black fw-bold">Cadastro</h1>
 
           <input
             onChange={(e) => {

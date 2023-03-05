@@ -26,7 +26,7 @@ function ForgotPassword() {
       <Navbar />
 
       <form className="text-center form-login mx-auto mt-5">
-        <h3 className="mb-3 font-weight-bold">Esqueceu a senha?</h3>
+        <h3 className="mb-3 fw-bold">Esqueceu a senha?</h3>
         <input
           type="email"
           className="form-control my-2"

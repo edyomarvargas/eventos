@@ -31,7 +31,7 @@ function Login() {
       {useSelector((state) => state.isLogged) && <Redirect to="/" />}
 
       <form className="mx-auto">
-        <h1 className="h3 mb-3 fw-normal text-white font-weight-bold text-center">
+        <h1 className="h3 mb-3 text-white fw-bold text-center">
           Login
         </h1>
 
