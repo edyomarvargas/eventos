@@ -1,0 +1,22 @@
+.form-container {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin: 1rem 0;
+}
+
+textarea {
+  resize: none;
+}
+
+.btn-register {
+  background-color: #614EA6;
+  color: #FFF;
+}
+
+.btn-register:hover {
+  background-color: #F21667;
+  color: #FFF;
+}
