@@ -10,7 +10,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [msgType, setMsgType] = useState("");
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const login = () => {
     const auth = getAuth();
@@ -18,7 +18,7 @@ function Login() {
       .then((_userCredential) => {
         setMsgType("success");
         setTimeout(() => {
-          dispatch({type: 'LOGIN', userEmail: email})
+          dispatch({ type: "LOGIN", userEmail: email });
         }, 1000);
       })
       .catch((_error) => {
@@ -28,8 +28,7 @@ function Login() {
 
   return (
     <div className="login-container d-flex align-items-center">
-
-      {useSelector(state => state.isLogged) && <Redirect to="/" />}
+      {useSelector((state) => state.isLogged) && <Redirect to="/" />}
 
       <form className="mx-auto">
         <h1 className="h3 mb-3 fw-normal text-white font-weight-bold text-center">
@@ -70,8 +69,12 @@ function Login() {
         </button>
 
         <div className="msg-login text-white text-center my-4">
-          {msgType === "success" && <span>Tudo certo! Você está conectado! &#128526;</span>}
-          {msgType === "error" && <span>Algo deu errado! Verifique o usuário ou a senha!</span>}
+          {msgType === "success" && (
+            <span>Tudo certo! Você está conectado! &#128526;</span>
+          )}
+          {msgType === "error" && (
+            <span>Algo deu errado! Verifique o usuário ou a senha!</span>
+          )}
         </div>
 
         <div className="login-options mt-4">
