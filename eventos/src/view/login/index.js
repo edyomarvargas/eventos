@@ -78,7 +78,7 @@ function Login() {
         </div>
 
         <div className="login-options mt-4">
-          <Link to="" className="mx-2">
+          <Link to="/forgot-password" className="mx-2">
             Recuperar senha
           </Link>
           <span className="text-white">&#9733;</span>
