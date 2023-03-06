@@ -15,9 +15,11 @@ function CreateEvent() {
   const [time, setTime] = useState("");
   const [image, setImage] = useState("");
   const userEmail = useSelector((state) => state.userEmail);
+  const [isLoading, setIsLoading] = useState(false);
 
   const createNewEvent = async () => {
     setMsgType("");
+    setIsLoading(true);
 
     try {
       await addDoc(collection(db, "eventos"), {
@@ -38,9 +40,11 @@ function CreateEvent() {
       uploadBytesResumable(storageRef, image);
 
       setMsgType("success");
+      setIsLoading(false);
     } catch (error) {
       setMsgType("error");
-    } 
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -116,13 +120,21 @@ function CreateEvent() {
             />
           </div>
 
-          <button
-            type="button"
-            className="btn btn-lg btn-block mt-3 mb-5 btn-register"
-            onClick={createNewEvent}
-          >
-            Criar Evento
-          </button>
+          <div className="row">
+            {isLoading ? (
+              <div class="spinner-border text-danger mx-auto" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-lg btn-block mt-3 mb-5 btn-register"
+                onClick={createNewEvent}
+              >
+                Criar Evento
+              </button>
+            )}
+          </div>
         </form>
 
         <div className="msg-login text-center my-4">
