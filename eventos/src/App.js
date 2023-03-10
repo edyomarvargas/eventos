@@ -12,6 +12,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <Route exact path="/" component={Home} />
+        <Route path="/events/:route" component={Home} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/forgot-password" component={ForgotPassword} />
