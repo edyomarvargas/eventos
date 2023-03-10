@@ -1,19 +1,25 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import EventCard from "../components/eventCard";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import "./home.css";
+import { useSelector } from "react-redux";
 
-function Home() {
+function Home({ match }) {
   const [events, setEvents] = useState([]);
   const [search, setSearch] = useState("");
+  const userEmail = useSelector(state => state.userEmail)
 
   useEffect(() => {
-    const eventsList = [];
     const fetchEvents = async () => {
-      const querySnapshot = await getDocs(collection(db, "eventos"));
-      querySnapshot.forEach((doc) => {  
+      const eventsList = [];
+      let eventsRef = collection(db, "eventos");
+      if (match.params.route === "my-events") {
+        eventsRef = query(eventsRef, where("user", "==", userEmail));
+      }
+      const querySnapshot = await getDocs(eventsRef);
+      querySnapshot.forEach((doc) => {
         if (doc.data().title.toLowerCase().indexOf(search.toLowerCase()) >= 0) {
           eventsList.push({
             id: doc.id,
@@ -24,12 +30,14 @@ function Home() {
       setEvents(eventsList);
     };
     fetchEvents();
-  }, [search]);
+  }, [match.params.route, search, userEmail]);
+
 
   return (
     <>
       <Navbar />
       <div className="row p-5">
+        <h3 className="text-center pb-4">Eventos publicados</h3>
         <input
           type="text"
           className="form-control text-center"
