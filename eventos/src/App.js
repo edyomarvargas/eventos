@@ -4,6 +4,7 @@ import Register from "./view/register";
 import Home from "./view/home";
 import ForgotPassword from "./view/forgotPassword";
 import CreateEvent from "./view/createEvent";
+import EventDetails from "./view/eventDetails";
 import store from "./store";
 import { Provider } from "react-redux";
 
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/forgot-password" component={ForgotPassword} />
         <Route exact path="/create-event" component={CreateEvent} />
+        <Route exact path="/event-details" component={EventDetails} />
       </Router>
     </Provider>
   );
