@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/forgot-password" component={ForgotPassword} />
         <Route exact path="/create-event" component={CreateEvent} />
-        <Route exact path="/event-details" component={EventDetails} />
+        <Route path="/event-details/:id" component={EventDetails} />
       </Router>
     </Provider>
   );
