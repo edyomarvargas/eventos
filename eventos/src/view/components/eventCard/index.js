@@ -32,7 +32,7 @@ function EventCard({ id, img, title, description, views }) {
 
         <div className="row card-footer d-flex align-items-center">
           <div className="col-6">
-            <Link to={`event-details/${id}`} className="btn btn-sm btn-details">
+            <Link to={`/event-details/${id}`} className="btn btn-sm btn-details">
               Mais detalhes
             </Link>
           </div>
