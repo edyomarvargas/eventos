@@ -38,3 +38,9 @@
 .views span {
   margin: 0 10px;
 }
+
+.spinner-border {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
