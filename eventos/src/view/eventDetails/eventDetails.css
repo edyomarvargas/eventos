@@ -23,3 +23,18 @@
 .btn-edit i:hover {
   color: #614EA6;
 }
+
+.title {
+  color: #614EA6;
+}
+
+.views {
+  align-items: center;
+  color: #614EA6;
+  display: flex;
+  justify-content: end;
+}
+
+.views span {
+  margin: 0 10px;
+}
