@@ -122,8 +122,8 @@ function CreateEvent() {
 
           <div className="row">
             {isLoading ? (
-              <div class="spinner-border text-danger mx-auto" role="status">
-                <span class="visually-hidden">Loading...</span>
+              <div className="spinner-border text-danger mx-auto" role="status">
+                <span className="visually-hidden">Loading...</span>
               </div>
             ) : (
               <button

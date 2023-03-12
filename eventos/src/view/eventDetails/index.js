@@ -51,8 +51,8 @@ function EventDetails(props) {
 
       <div className="container-fluid">
         {isLoading ? (
-          <div class="spinner-border text-danger mx-auto" role="status">
-            <span class="visually-hidden"></span>
+          <div className="spinner-border text-danger mx-auto" role="status">
+            <span className="visually-hidden"></span>
           </div>
         ) : (
           <div>

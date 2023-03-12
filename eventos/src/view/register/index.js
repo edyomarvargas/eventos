@@ -73,8 +73,8 @@ function Register() {
           />
 
           {isLoading ? (
-            <div class="spinner-border text-danger" role="status">
-              <span class="visually-hidden">Loading...</span>
+            <div className="spinner-border text-danger" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
           ) : (
             <button
