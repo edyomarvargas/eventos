@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Navbar from "../components/navbar";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import "./eventDetails.css";
-import { useSelector } from "react-redux";
 
 function EventDetails(props) {
   const [event, setEvent] = useState({});
@@ -23,6 +23,10 @@ function EventDetails(props) {
       } else {
         console.log("No such event!");
       }
+
+      await updateDoc(docRef, {
+        views: docSnap.data().views + 1,
+      });
     }
 
     fetchEvent();
@@ -56,7 +60,7 @@ function EventDetails(props) {
               <img src={imgUrl} className="img-banner" alt="Event banner" />
               <div className="col-12 mt-3 views">
                 <i className="fas fa-eye"></i>
-                <span>{event.views}</span>
+                <span>{event.views + 1}</span>
               </div>
               <h3 className="text-center mt-5 title">{event.title}</h3>
             </div>
