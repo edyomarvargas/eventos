@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../components/navbar";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { db } from "../../config/firebase";
 import "./createEvent.css";
 
-function CreateEvent() {
+function CreateEvent(props) {
   const [msgType, setMsgType] = useState("");
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
@@ -16,6 +16,36 @@ function CreateEvent() {
   const [image, setImage] = useState("");
   const userEmail = useSelector((state) => state.userEmail);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchEvent() {
+      const docRef = doc(db, "eventos", props.match.params.id);
+      const docSnap = await getDoc(docRef);
+
+      console.log(docSnap.data());
+      if (docSnap.exists()) {
+        setTitle(docSnap.data().title);
+        setType(docSnap.data().type);
+        setDescription(docSnap.data().description);
+        setDate(docSnap.data().date);
+        setTime(docSnap.data().time);
+      } 
+    }
+
+    fetchEvent();
+  }, [title, type, description, date, time, props.match.params.id]);
+
+  async function updateEvent() {
+    const docRef = doc(db, "eventos", props.match.params.id);
+
+    await updateDoc(docRef, {
+      title,
+      type,
+      description,
+      date,
+      time,
+    });
+  }
 
   const createNewEvent = async () => {
     setMsgType("");
@@ -53,7 +83,9 @@ function CreateEvent() {
 
       <div className="col-12 mt-5">
         <div className="row">
-          <h3 className="text-center fw-bold">Novo Evento</h3>
+          <h3 className="text-center fw-bold">
+            {props.match.params.id ? "Editar evento" : "Novo evento"}
+          </h3>
         </div>
 
         <form className="form-container">
@@ -63,6 +95,7 @@ function CreateEvent() {
               type="text"
               className="form-control"
               onChange={(e) => setTitle(e.target.value)}
+              value={title && title}
             />
           </div>
 
@@ -71,6 +104,7 @@ function CreateEvent() {
             <select
               className="form-control"
               onChange={(e) => setType(e.target.value)}
+              value={type && type}
             >
               <option disabled selected value>
                 -- Selecione um tipo --
@@ -88,6 +122,7 @@ function CreateEvent() {
               className="form-control"
               rows="3"
               onChange={(e) => setDescription(e.target.value)}
+              value={description && description}
             />
           </div>
 
@@ -98,6 +133,7 @@ function CreateEvent() {
                 type="date"
                 className="form-control"
                 onChange={(e) => setDate(e.target.value)}
+                value={date && date}
               />
             </div>
 
@@ -107,6 +143,7 @@ function CreateEvent() {
                 type="time"
                 className="form-control"
                 onChange={(e) => setTime(e.target.value)}
+                value={time && time}
               />
             </div>
           </div>
@@ -129,9 +166,9 @@ function CreateEvent() {
               <button
                 type="button"
                 className="btn btn-lg btn-block mt-3 mb-5 btn-register"
-                onClick={createNewEvent}
+                onClick={props.match.params.id ? updateEvent : createNewEvent}
               >
-                Criar Evento
+                {props.match.params.id ? "Atualizar evento" : "Criar evento"}
               </button>
             )}
           </div>
