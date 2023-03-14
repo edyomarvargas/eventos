@@ -99,7 +99,7 @@ function EventDetails(props) {
             </div>
 
             {user === event.user && (
-              <Link to="" className="btn-edit">
+              <Link to={`/edit-event/${props.match.params.id}`} className="btn-edit">
                 <i className="fas fa-pen-square fa-3x"></i>
               </Link>
             )}
