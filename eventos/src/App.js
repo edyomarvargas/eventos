@@ -19,6 +19,7 @@ function App() {
         <Route exact path="/forgot-password" component={ForgotPassword} />
         <Route exact path="/create-event" component={CreateEvent} />
         <Route path="/event-details/:id" component={EventDetails} />
+        <Route path="/edit-event/:id" component={CreateEvent} />
       </Router>
     </Provider>
   );
