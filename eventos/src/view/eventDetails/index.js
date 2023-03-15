@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Navbar from "../components/navbar";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import "./eventDetails.css";
 
@@ -11,6 +11,7 @@ function EventDetails(props) {
   const [event, setEvent] = useState({});
   const [imgUrl, setImgUrl] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isRemoved, setIsRemoved] = useState(false);
   const user = useSelector((state) => state.userEmail);
 
   useEffect(() => {
@@ -45,9 +46,17 @@ function EventDetails(props) {
       });
   }, [event]);
 
+  async function removeEvent() {
+    await deleteDoc(doc(db, "eventos", props.match.params.id));
+
+    setIsRemoved(true);
+  }
+
   return (
     <>
       <Navbar />
+
+      {isRemoved && <Redirect to="/" />}
 
       <div className="container-fluid">
         {isLoading ? (
@@ -103,6 +112,17 @@ function EventDetails(props) {
                 <i className="fas fa-pen-square fa-3x"></i>
               </Link>
             )}
+
+            {user === event.user && (
+              <button
+                type="button"
+                className="btn btn-lg btn-block mt-3 mb-5 btn-register"
+                onClick={removeEvent}
+              >
+                Remover evento
+              </button>
+            )}
+
           </div>
         )}
       </div>
