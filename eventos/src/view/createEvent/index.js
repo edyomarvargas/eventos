@@ -13,7 +13,8 @@ function CreateEvent(props) {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [image, setImage] = useState("");
+  const [currentImage, setCurrentImage] = useState("");
+  const [newImage, setNewImage] = useState("");
   const userEmail = useSelector((state) => state.userEmail);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,20 +23,31 @@ function CreateEvent(props) {
       const docRef = doc(db, "eventos", props.match.params.id);
       const docSnap = await getDoc(docRef);
 
-      console.log(docSnap.data());
       if (docSnap.exists()) {
         setTitle(docSnap.data().title);
         setType(docSnap.data().type);
         setDescription(docSnap.data().description);
         setDate(docSnap.data().date);
         setTime(docSnap.data().time);
-      } 
+        setCurrentImage(docSnap.data().image);
+      }
     }
 
-    fetchEvent();
-  }, [title, type, description, date, time, props.match.params.id]);
+    if (props.match.params.id) {
+      fetchEvent();
+    }
+  }, [isLoading]);
 
   async function updateEvent() {
+    setMsgType("");
+    setIsLoading(true);
+
+    if (newImage) {
+      const storage = getStorage();
+      const storageRef = ref(storage, `images/${newImage.name}`);
+      uploadBytesResumable(storageRef, newImage);
+    }
+
     const docRef = doc(db, "eventos", props.match.params.id);
 
     await updateDoc(docRef, {
@@ -44,7 +56,10 @@ function CreateEvent(props) {
       description,
       date,
       time,
+      image: newImage ? newImage.name : currentImage,
     });
+    setMsgType("success");
+    setIsLoading(false);
   }
 
   const createNewEvent = async () => {
@@ -60,18 +75,19 @@ function CreateEvent(props) {
         time,
         user: userEmail,
         views: 0,
-        image: image.name,
+        image: currentImage.name,
         isPublic: true,
         created: new Date(),
       });
 
       const storage = getStorage();
-      const storageRef = ref(storage, `images/${image.name}`);
-      uploadBytesResumable(storageRef, image);
+      const storageRef = ref(storage, `images/${currentImage.name}`);
+      uploadBytesResumable(storageRef, currentImage);
 
       setMsgType("success");
       setIsLoading(false);
     } catch (error) {
+      console.log(error);
       setMsgType("error");
       setIsLoading(false);
     }
@@ -153,7 +169,11 @@ function CreateEvent(props) {
             <input
               type="file"
               className="form-control"
-              onChange={(e) => setImage(e.target.files[0])}
+              onChange={(e) =>
+                currentImage
+                  ? setNewImage(e.target.files[0])
+                  : setCurrentImage(e.target.files[0])
+              }
             />
           </div>
 
