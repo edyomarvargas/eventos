@@ -7,6 +7,7 @@ Este projeto é uma aplicação de publicação de eventos desenvolvida utilizan
   - [Sumário](#sumário)
   - [Sobre a aplicação](#sobre-a-aplicação)
   - [Instalando e rodando a aplicação](#instalando-e-rodando-a-aplicação)
+  - [Preview](#preview)
   
 ## Sobre a aplicação
 Esta aplicação foi desenvolvida com finalidade de estudos e possui as seguintes funcionalidades:
@@ -28,6 +29,113 @@ Posteriormente, clone o repositório e execute os seguintes comandos na raiz do 
     npm install
     npm start
   ```
+  
+## Preview
 
+<table>
+  <tr>
+    <th colspan="2" style="text-align: center">Login</th>
+  </tr>
+  <tr>
+    <td style="text-align: center">Desktop</td>
+    <td style="text-align: center">Mobile</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="eventos/src/preview/login_desktop.png" alt="Imagem Desktop" width="800" />
+    </td>
+    <td>
+      <img src="eventos/src/preview/login_mobile.png" alt="Imagem Mobile" width="300" />
+    </td>
+  </tr>
+</table>
 
- 
+<table>
+  <tr>
+    <th colspan="2" style="text-align: center">Register</th>
+  </tr>
+  <tr>
+    <td style="text-align: center">Desktop</td>
+    <td style="text-align: center">Mobile</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="eventos/src/preview/register_desktop.png" alt="Imagem Desktop" width="800" />
+    </td>
+    <td>
+      <img src="eventos/src/preview/register_mobile.png" alt="Imagem Mobile" width="300" />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" style="text-align: center">Forgot Password</th>
+  </tr>
+  <tr>
+    <td style="text-align: center">Desktop</td>
+    <td style="text-align: center">Mobile</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="eventos/src/preview/forgot_password_desktop.png" alt="Imagem Desktop" width="800" />
+    </td>
+    <td>
+      <img src="eventos/src/preview/forgot_password_mobile.png" alt="Imagem Mobile" width="300" />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" style="text-align: center">Home</th>
+  </tr>
+  <tr>
+    <td style="text-align: center">Desktop</td>
+    <td style="text-align: center">Mobile</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="eventos/src/preview/home_desktop.png" alt="Imagem Desktop" width="800" />
+    </td>
+    <td>
+      <img src="eventos/src/preview/home_mobile.png" alt="Imagem Mobile" width="300" />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" style="text-align: center">Event Details</th>
+  </tr>
+  <tr>
+    <td style="text-align: center">Desktop</td>
+    <td style="text-align: center">Mobile</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="eventos/src/preview/event_details_desktop.png" alt="Imagem Desktop" width="800" />
+    </td>
+    <td>
+      <img src="eventos/src/preview/event_details_mobile.png" alt="Imagem Mobile" width="300" />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th colspan="2" style="text-align: center">Create Event</th>
+  </tr>
+  <tr>
+    <td style="text-align: center">Desktop</td>
+    <td style="text-align: center">Mobile</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="eventos/src/preview/create_event_desktop.png" alt="Imagem Desktop" width="800" />
+    </td>
+    <td>
+      <img src="eventos/src/preview/create_event_mobile.png" alt="Imagem Mobile" width="300" />
+    </td>
+  </tr>
+</table>
